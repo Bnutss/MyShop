@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Магазин</title>
+  </head>
+  <body>
+    <h1>Добро пожаловать в магазин!</h1>
+    <ul>
+      {% for product in products %}
+      <li>
+        <strong>{{ product.name }}</strong>
+        <br />
+        Категория: {{ product.category }}
+        <br />
+        Цена: {{ product.price }} UZS
+        <br />
+        <a href="{% url 'product_detail' product.pk %}">Перейти к товару</a>
+        <form method="post" action="{% url 'buy_product' product.pk %}">
+          {% csrf_token %}
+          <input type="submit" value="Купить товар" />
+        </form>
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

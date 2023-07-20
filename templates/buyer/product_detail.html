@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Детали товара</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+      body {
+        background-color: yellow;
+        background-size: cover;
+        min-height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-4">
+      <h1 class="mb-4">Детали товара "{{ product.name }}"</h1>
+      <ul class="list-group">
+        <li class="list-group-item">Категория: {{ product.category }}</li>
+        <li class="list-group-item">Цена: {{ product.price }} UZS</li>
+        {% if product.photo %}
+        <li class="list-group-item">
+          <img
+            src="{{ product.photo.url }}"
+            alt="{{ product.name }}"
+            width="300"
+            class="img-thumbnail" />
+        </li>
+        {% endif %}
+      </ul>
+      <a href="{% url 'product_list' %}" class="btn btn-primary mt-3"
+        >Назад к списку товаров</a
+      >
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

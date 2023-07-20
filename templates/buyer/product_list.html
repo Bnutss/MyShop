@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BnutssMarket</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+      body {
+        background-color: yellow;
+        background-size: cover;
+        min-height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-4">
+      <div class="d-flex justify-content-center">
+        <h1>BnutssMarket</h1>
+      </div>
+      <ul class="list-group">
+        {% for product in products %}
+        <li class="list-group-item d-flex align-items-center">
+          <div>
+            <strong>{{ product.name }}</strong>
+            <br />
+            Категория: {{ product.category }}
+            <br />
+            Цена: {{ product.price }} UZS
+            <br />
+            <a
+              href="{% url 'product_detail' product.pk %}"
+              class="btn btn-primary mt-2"
+              >Перейти к товару</a
+            >
+            <form method="post" action="{% url 'buy_product' product.pk %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-success mt-2">
+                Купить товар
+              </button>
+            </form>
+          </div>
+          {% if product.photo %}
+          <img
+            src="{{ product.photo.url }}"
+            alt="{{ product.name }}"
+            width="100"
+            class="img-thumbnail ml-auto" />
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
